@@ -1,7 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
 
-		
+	<div class="content-section">
+	  <div class="media account-section">
+	    <img class="rounded-circle account-img" src={{ image_source }}>
+	    <div class="media-body account-info">
+	      <h2 class="account-heading">{{ user.name }}</h2>
+	      <p class="text-secondary">Age: {{ user.age }}</p>
+	      <p class="text-secondary">Gender: {{ user.sex }}</p>
+	      <p class="text-secondary">Bio: {{ user.bio }}</p>
+	      <a class="mr-2" href={{ url_for('change_accountinfo') }}>Change your information</a>
+	      <a class="mr-2" href={{ url_for('change_password') }}>Change password</a>
+	    </div>
+	  </div>
+	</div>
+	
 	{% for event, players in data[::-1] %}
 		<div class="card mt-4 ml-5 mr-5 eventcard">
 			<div class="row">
@@ -9,10 +22,16 @@
 					<h5 class="card-title">{{event[1]}}</h5>
 					<p class="card-text">{{event[6]}}</p>
 				</div>
-				<div class="col">
+				<div class="col text-right">
+					<button type="button" class="btn btn-danger btn-circle" onclick="window.location.href='{{ url_for( 'exit_event', id=event[0]) }}';"><b>X</b></button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col text-right">
 					<a href=#{{event[0]}} data-toggle="collapse" class="card-link">More info</a>
 				</div>
 			</div>
+			
 			<div id={{event[0]}} class="collapse card-body">
 				<div class="row mb-1">
 					<div class="col">
@@ -46,16 +65,11 @@
 				<div class="row">
 				{% for player in players %}
 					<div class="col-2">
-						<p class="card-text"><b>{{player[2]}} {{player[0]}}</b></p>
+						<p class="card-text"><b>{{player[2]}}</b></p>
 						<a href=#><img class="rounded-circle account-img" src='static/small_pics/{{ player[6] }}'></a>
 						<p class="card-text"> +358{{player[5]}}</p>
 					</div>
 				{% endfor %}
-					<div class="col-2">
-						<p class="card-text"><b>Join now</b></p>
-						<button type="button" class="btn btn-warning btn-circle btn-xl" onclick="window.location.href='{{ url_for( 'add2event',id=event[0]) }}';"><b>+</b></button>
-						
-					</div>
 				</div>
 			</div>
 		</div>

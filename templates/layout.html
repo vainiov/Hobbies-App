@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang='fi'>
+<head>
+	<meta charset="uft-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fi=no">
+	
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+	<link rel="stylesheet" type='text/css' href="/static/layoutstyles.css">
+	
+	{% if title %}
+	<title>Hobbies App - {{title}}</title>
+	{% else %}
+	<title>Hobbies App</title>
+	{% endif %}
+</head>
+<body>
+	<div class="container">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-custom1 rounded-bottom sticky-top">
+	  <a class="navbar-brand" href="/home">HobbiesApp</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+		  <li class="nav-item active">
+			<a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+		  </li>
+		  <li class="nav-item active">
+			<a class="nav-link" href="/create_event">Create a event</a> <span class="sr-only">(current)</span></a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link disabled" href="#">About</a>
+		  </li>
+		</ul>
+		<ul class="navbar-nav ml-5">
+		  {% if user.number %}
+			  <li class="nav-item active">
+				<a class="nav-link" href="/account">Look your account</a> <span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item active">
+				<a class="nav-link" href="/logout">Log out <span class="sr-only">(current)</span></a>
+			  </li>
+		  {% else %}
+			  <li class="nav-item active">
+				<a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item active">
+				<a class="nav-link" href="/create_account">Create an account</a> <span class="sr-only">(current)</span></a>
+			  </li>
+		  {% endif %}
+		</ul>
+	  </div>
+	</nav>
+	
+	<main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          {% block content %}{% endblock %}
+        </div>
+		
+        <div class="col-md-4">
+		<div class="content-section searchbar">
+			<form method="POST" action="">
+				{{ searchform.hidden_tag() }}
+				<fieldset class="form-group">
+					<legend class="border-bottom mb-4">Look for an event</legend>
+					<div class="form-inline input-group">
+						{{ searchform.searchfield(class="form-control", placeholder='Search key words') }}
+						{{ searchform.search(class="btn btn-success") }}
+					</div>
+					
+					<div class="row">
+						<div class="col">
+							<div class="form-group ">
+								{{ searchform.num.label(class="form-control-label") }}
+								{{ searchform.num(class="form-control search-list") }}
+							</div>
+							<div class="form-group ">
+								{{ searchform.start(class="custom-select") }}
+							</div>
+							<div class="form-group ">
+								{{ searchform.end(class="custom-select") }}
+							</div>
+						</div>
+						<div class="form-group col">
+							{{ searchform.sport.label(class="form-control-label") }}
+							{{ searchform.sport(class="form-control search-list") }}
+						</div>
+					</div>
+					
+					<div class="form-group">
+						{{ searchform.place(class="custom-select") }}
+					</div>
+					
+					<div class="form-group">
+						{{ searchform.search2(class="btn btn-success btn-block") }}
+					</div>
+			</form>
+    </main>
+	
+	
+
+	
+	
+	</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+

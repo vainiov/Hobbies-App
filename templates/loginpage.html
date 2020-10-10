@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<div class="login-section">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group">
+				<h2 class="login-label">Login page</h2>
+				
+				<div class="form-group">
+					{{ form.number.label(class="form-control-label") }}
+					<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroupPrepend">+358</span>
+							</div>
+					{% if form.number.errors %}
+						{{ form.number(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.number.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.number(class="form-control form-control-sm", placeholder="Phone number") }}
+					{% endif %}
+					</div>
+				</div>
+				
+				<div class="form-group">
+					{{ form.password.label(class="form-control-label") }}
+					
+					{% if form.password.errors %}
+						{{ form.password(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.password.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.password(class="form-control form-control-sm", placeholder="Password") }}
+					{% endif %}
+				</div>
+				
+			</fieldset>
+			<div class="form-group">
+				{{ form.submit(class="btn login-btn") }}
+			</div>
+			<div class="row">
+				<div class="col ml-5">
+					<a style="color: purple;" href="#">Forgot Password?</a>
+				</div>
+				<div class="col mr-4">
+					<a class="text-right" style="color: purple;" href=#>Login as a guest</a>
+				</div>
+			</div>
+		</form>
+	</div>
+
+{% endblock content %}

@@ -1,0 +1,119 @@
+:root{
+	--clr-login: #0b8a0b;
+}
+
+.bg-custom1{
+  background-color: green;
+}
+
+.text-corn{
+	color: cornflowerblue;
+}
+
+body {
+	background-color: lawngreen;
+	background-image: linear-gradient(75deg, rgba(37,245,61,1) 0%, rgba(0,128,0,1) 90%);
+	}
+	
+.searchbar{
+	background-color: goldenrod;
+	padding-bottom: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+	border: solid thick;
+	border-radius: 5px;
+}
+
+.search-list{
+	background-color: goldenrod;
+	list-style-type: none;
+	border: none;
+}
+
+.eventcard{
+	background-color: wheat;
+	border: solid medium green;
+	
+}
+
+.login-section{
+	background-color:var(--clr-login);
+	width: 400px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -70%);
+	border-radius: 10px;
+	padding: 10px 20px;
+}
+
+.login-btn{
+	background-color: lime;
+	width: 300px;
+	position: relative;
+	left: 30px 
+}
+
+.login-label{
+	text-align: center;
+}
+
+.create-event{
+	background-color:var(--clr-login);
+	margin: 2em;
+	border-radius: 10px;
+	padding: 10px 20px;
+	width: 500px;
+}
+
+.create-btn{
+	background-color: lime;
+	width: 300px;
+	position: relative;
+	left: 80px;
+}
+
+.account-section{
+	background-color: wheat;
+	margin-top: 30px;
+	padding-top: 30px;
+	padding-left: 30px;
+	border-radius: 20px;
+}
+
+.account-info{
+	background-color: wheat;
+	padding-left: 30px;
+	border-bottom-right-radius: 20px;
+	padding-bottom: 1em;
+}
+
+.account-btn{
+	background-color: lime;
+	position: relative;
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 10px;
+  font-size: 40px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  margin-right: 1px;
+}
+
+
+
+
+

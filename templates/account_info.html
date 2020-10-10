@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<div class="content-section create-event">
+		<form method="POST" action="" enctype="multipart/form-data">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group">
+				<legend class="border-bottom login-label mb-4">Change account info</legend>
+				
+				
+				<div class="form-row">
+					<div class="col-5">
+						{{ form.name.label(class="form-control-label") }}
+						
+						{% if form.name.errors %}
+							{{ form.name(class="form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.name.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.name(class="form-control", placeholder="Name") }}
+						{% endif %}
+					</div>
+					<div class="col">
+						{{ form.age.label(class="form-control-label") }}
+						{% if form.age.errors %}
+							{{ form.age(class="form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.age.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.age(class="form-control",placeholder="Age", rows='5') }}
+						{% endif %}
+					</div>
+					<div class="col">
+						{{ form.sex.label(class="form-control-label") }}
+						{% if form.sex.errors %}
+							{{ form.sex(class="form-control form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.sex.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.sex(class="custom-select") }}
+						{% endif %}
+					</div>
+				</div>
+				
+				<div class="form-group">
+					{{ form.bio.label(class="form-control-label") }}
+					{% if form.bio.errors %}
+                        {{ form.bio(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.bio.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.bio(class="form-control",placeholder="Descriptive text of you and ypur skills.", rows='5') }}
+                    {% endif %}
+				</div>
+				
+				<div class="form-group">
+					{{ form.photo.label() }}
+					{{ form.photo(class="form-control-file") }}
+					{% if form.photo.errors %}
+						{% for error in form.photo.errors %}
+							<span class="text-danger">{{ error }}</span></br>
+						{% endfor %}
+					{% endif %}
+				</div>
+				
+				<div class="form-row">
+					<div class="col-7">
+						{{ form.password.label(class="form-control-label") }}
+						{% if form.password.errors %}
+							{{ form.password(class="form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.password.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.password(class="form-control",placeholder="Password", rows='5') }}
+						{% endif %}
+					</div>
+				</div>
+
+			</fieldset>
+		<div class="form-row">
+			<div class="col">
+				{{ form.submit(class="btn account-btn") }}
+			</div>
+			<div clas="row">
+				<a class="nav-link" style="color: purple;" href="/delete_account">Delete account</a>
+			</div>
+			<div clas="row">
+				<a class="nav-link" style="color: purple;" href="/account">Cancel</a>
+			</div>
+		</div>
+		</form>
+	</div>
+
+{% endblock content %}

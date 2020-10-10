@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+	<div class="login-section">
+		<form method="POST" action="" enctype="multipart/form-data">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group">
+				<legend class="border-bottom login-label mb-4">Login as a guest</legend>
+				
+				<div class="form-group">
+					{{ form.number.label(class="form-control-label") }}
+					<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroupPrepend">+358</span>
+							</div>
+					{% if form.number.errors %}
+						{{ form.number(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.number.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.number(class="form-control form-control-sm", placeholder="Phone number") }}
+					{% endif %}
+					</div>
+				</div>
+				
+				<div class="form-group">
+					{{ form.name.label(class="form-control-label") }}
+					
+					{% if form.name.errors %}
+						{{ form.name(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.name.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.name(class="form-control form-control-sm", placeholder="Name") }}
+					{% endif %}
+				</div>
+				
+				<div class="form-group">
+					{{ form.age.label(class="form-control-label") }}
+					
+					{% if form.age.errors %}
+						{{ form.age(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.age.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.age(class="form-control form-control-sm", placeholder="Age") }}
+					{% endif %}
+				</div>
+				
+				<div class="form-group">
+					{{ form.sex.label(class="form-control-label") }}
+					
+					{% if form.sex.errors %}
+						{{ form.sex(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.sex.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.sex(class="form-control form-control-sm", placeholder="Gender") }}
+					{% endif %}
+				</div>
+
+			</fieldset>
+		<div class="form-group">
+			{{ form.submit(class="btn btn-success") }}
+		</div>
+		</form>
+		<a class="text-right" style="color: purple;" href={{url_for('login', id=id)}}>Already have an account?</a>
+	</div>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<div class="content-section create-event">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group">
+				<legend class="border-bottom login-label mb-4">Create an event</legend>
+				
+				<div class="form-group">
+					{{ form.header.label(class="form-control-label") }}
+					
+					{% if form.header.errors %}
+                        {{ form.header(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.header.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.header(class="form-control", placeholder="Descriptive header") }}
+                    {% endif %}
+				</div>
+				
+				<div class="form-row">
+					<div class="col">
+						{{ form.sport.label(class="form-control-label") }}
+						{% if form.sport.errors %}
+							{{ form.sport(class="form-control form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.sport.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.sport(class="custom-select") }}
+						{% endif %}
+					</div>
+					<div class="col">
+						{{ form.limit.label(class="form-control-label") }}
+						{% if form.limit.errors %}
+							{{ form.limit(class="form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.limit.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.limit(class="form-control",placeholder="If recuired...", rows='5') }}
+						{% endif %}
+					</div>
+					<div class="col">
+						{{ form.time.label(class="form-control-label") }}
+						{% if form.time.errors %}
+							{{ form.time(class="form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.time.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.time(class="form-control",placeholder="e.g. 19:00", rows='5') }}
+						{% endif %}
+					</div>
+				</div>
+				
+				<div class="form-row">
+					<div class="col-7">
+						{{ form.place.label(class="form-control-label") }}
+						{% if form.place.errors %}
+							{{ form.place(class="form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.place.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.place(class="form-control",placeholder="e.g. address", rows='5') }}
+						{% endif %}
+					</div>
+					<div class="col">
+						{{ form.city.label(class="form-control-label") }}
+						{% if form.city.errors %}
+							{{ form.city(class="form-control form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.city.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.city(class="custom-select") }}
+						{% endif %}
+					</div>
+				</div>
+				{% if not user.number %}
+				<div class="form-row">
+					<div class="col">
+						{{ form.number.label(class="form-control-label") }}
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroupPrepend">+358</span>
+							</div>
+						{% if form.number.errors %}
+							{{ form.number(class="form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.number.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% elif user.number %}
+							{{ form.number(class="form-control", rows='5') }}
+						{% else %}
+							{{ form.number(class="form-control",placeholder="Your phone number", rows='5') }}
+						{% endif %}
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				
+				<div class="form-group">
+					{{ form.description.label(class="form-control-label") }}
+					{% if form.description.errors %}
+                        {{ form.description(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.description.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.description(class="form-control",placeholder="Descriptive text for example of your crew and your level.", rows='5') }}
+                    {% endif %}
+				</div>
+				
+			</fieldset>
+			<div class="form-group">
+				{{ form.submit(class="btn create-btn") }}
+			</div>
+		</form>
+	</div>
+
+{% endblock content %}
